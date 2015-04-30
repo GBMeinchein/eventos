@@ -1,0 +1,59 @@
+<%= form_for @evento, :html => { :class => "form-horizontal evento" } do |f| %>
+
+    <% if @evento.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @evento.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :titulo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :titulo, :class => 'form-control' %>
+    </div>
+    <%= error_span(@evento[:titulo]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :descricao, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :descricao, :class => 'form-control' %>
+    </div>
+    <%= error_span(@evento[:descricao]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :inicio, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :inicio, :class => 'form-control' %>
+    </div>
+    <%= error_span(@evento[:inicio]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :termino, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :termino, :class => 'form-control' %>
+    </div>
+    <%= error_span(@evento[:termino]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :imagem, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :imagem, :class => 'form-contrl' %>
+    </div>
+    <%= error_span(@evento[:imagem]) %>
+  </div>
+  <br>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            eventos_path, :class => 'btn btn-default' %>
+
+<% end %>
