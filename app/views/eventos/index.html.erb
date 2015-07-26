@@ -1,30 +1,22 @@
 <%- model_class = Evento -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
+
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:imagem) %></th>      
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:titulo) %></th>
-      <th><%= model_class.human_attribute_name(:descricao) %></th>
-      <th><%= model_class.human_attribute_name(:inicio) %></th>
-      <th><%= model_class.human_attribute_name(:termino) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
+
   </thead>
-  <tbody>
+ <tbody>
     <% @eventos.each do |evento| %>
       <tr>
-        <td><%= image_tag(evento.imagem_url, :width => 60) if evento.imagem.present? %></td>        
-        <td><%= link_to evento.id, evento_path(evento) %></td>
-        <td><%= evento.titulo %></td>
-        <td><%= evento.descricao %></td>
-        <td><%= evento.inicio %></td>
-        <td><%= evento.termino %></td>
-        <td><%=l evento.created_at %></td>
+        <td><%= image_tag(evento.imagem_url, :width => 60) if evento.imagem.present? %></td> 
+        <td>  
+          <dt><strong><%= model_class.human_attribute_name(:titulo) %>:</strong></dt>
+          <dd><%= evento.titulo %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
+          <dd><%= evento.inicio %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>
+          <dd><%= evento.termino %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
+          <dd><%= evento.descricao %></dd>          
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_evento_path(evento), :class => 'btn btn-default btn-xs' %>

@@ -1,0 +1,9 @@
+<h1>Novo Local</h1>
+
+<%= render 'form' %>
+
+<%= select(:siglaEstado, :id, Estado.all.collect {|c| [ c.siglaEstado, c.id ] }) %>
+
+<%= select(:nome, :id, Cidade.all.collect {|c| [ c.nome, c.id ] }) %>
+
+<%= link_to 'Back', locals_path %>

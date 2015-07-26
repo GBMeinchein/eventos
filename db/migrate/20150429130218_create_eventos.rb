@@ -6,6 +6,7 @@ class CreateEventos < ActiveRecord::Migration
       t.datetime :inicio
       t.datetime :termino
       t.string :imagem
+      t.references :local, index: true, foreign_key: true
 
       t.timestamps null: false
     end

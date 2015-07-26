@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429130218) do
+ActiveRecord::Schema.define(version: 20150722001913) do
+
+  create_table "cidades", force: :cascade do |t|
+    t.string   "nome",       limit: 255
+    t.integer  "estado_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id", using: :btree
+
+  create_table "estados", force: :cascade do |t|
+    t.string   "siglaEstado", limit: 255
+    t.string   "nome",        limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "eventos", force: :cascade do |t|
     t.string   "titulo",     limit: 255
@@ -23,4 +39,25 @@ ActiveRecord::Schema.define(version: 20150429130218) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "locals", force: :cascade do |t|
+    t.string   "nome",       limit: 255
+    t.integer  "cidade_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "locals", ["cidade_id"], name: "index_locals_on_cidade_id", using: :btree
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "nome",         limit: 255
+    t.string   "login",        limit: 255
+    t.string   "email",        limit: 255
+    t.string   "senha",        limit: 255
+    t.datetime "dataCadastro"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_foreign_key "cidades", "estados"
+  add_foreign_key "locals", "cidades"
 end
