@@ -8,6 +8,8 @@
   <dd><%= @evento.titulo %></dd>
   <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
   <dd><%= @evento.descricao %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
+  <dd><%= @evento.local.nome %></dd>  
   <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
   <dd><%= @evento.inicio %></dd>
   <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>

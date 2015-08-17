@@ -4,7 +4,18 @@ class EventosController < ApplicationController
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    if params[:search]
+      @eventos = Evento.search(params[:search])
+    else
+      @eventos = Evento.all
+    end
+
+    #@eventos = Evento.search(params[:search])
+    #  @eventos = @eventos.titulo(params[:titulo]) if params[:titulo].present?
+  end
+
+  def search
+    @eventos = Evento.search params[:search]
   end
 
   # GET /eventos/1
@@ -69,6 +80,6 @@ class EventosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:titulo, :descricao, :inicio, :termino, :imagem)
+      params.require(:evento).permit(:titulo, :descricao, :inicio, :termino, :imagem, :local_id)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722001913) do
+ActiveRecord::Schema.define(version: 20150815200903) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -37,13 +37,18 @@ ActiveRecord::Schema.define(version: 20150722001913) do
     t.string   "imagem",     limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "locals_id",  limit: 4
+    t.integer  "local_id",   limit: 4
   end
+
+  add_index "eventos", ["locals_id"], name: "FK_COD_LOCAL", using: :btree
 
   create_table "locals", force: :cascade do |t|
     t.string   "nome",       limit: 255
     t.integer  "cidade_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "evento_id",  limit: 4
   end
 
   add_index "locals", ["cidade_id"], name: "index_locals_on_cidade_id", using: :btree
@@ -59,5 +64,6 @@ ActiveRecord::Schema.define(version: 20150722001913) do
   end
 
   add_foreign_key "cidades", "estados"
+  add_foreign_key "eventos", "locals", column: "locals_id", name: "FK_COD_LOCAL"
   add_foreign_key "locals", "cidades"
 end

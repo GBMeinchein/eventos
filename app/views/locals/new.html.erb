@@ -1,9 +1,33 @@
 <h1>Novo Local</h1>
 
-<%= render 'form' %>
+<%= form_for(@local) do |f| %>
 
-<%= select(:siglaEstado, :id, Estado.all.collect {|c| [ c.siglaEstado, c.id ] }) %>
+	  <% if @local.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@local.errors.count, "error") %> prohibited this local from being saved:</h2>
 
-<%= select(:nome, :id, Cidade.all.collect {|c| [ c.nome, c.id ] }) %>
+	      <ul>
+	      <% @local.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	<div class="field">
+		<%= f.label :nome %><br>
+		<%= f.text_field :nome %>
+	</div>
+
+	<div class="field">
+		<%= f.label :cidade_id, "Cidades" %>
+  		<%= collection_select(:local, :cidade_id, Cidade.all.collect, :id, :nome, {:prompt => false })%>
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
 
 <%= link_to 'Back', locals_path %>
+

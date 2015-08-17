@@ -2,6 +2,29 @@
 
 <table class="table table-striped">
   <thead>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+              <%= form_tag(eventos_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+                <div class="input-append">
+                  <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Buscar eventos" %>
+                  <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
+                       of using a Rails form helper -->
+                  <button type="submit" class="btn btn-default">Filtrar</button>
+                </div>
+              <% end %>
+              <%= yield %>
+          </ul>
+        </div>
+      </div>
+    </div> 
+
 
   </thead>
  <tbody>
@@ -9,8 +32,11 @@
       <tr>
         <td><%= image_tag(evento.imagem_url, :width => 60) if evento.imagem.present? %></td> 
         <td>  
+
           <dt><strong><%= model_class.human_attribute_name(:titulo) %>:</strong></dt>
           <dd><%= evento.titulo %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
+          <dd><%= evento.local.nome if evento.local.present? %></dd>          
           <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
           <dd><%= evento.inicio %></dd>
           <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>

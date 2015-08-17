@@ -14,7 +14,6 @@
       </div>
     </div>
   <% end %>
-LOsdsadasdasd
   <div class="control-group">
     <%= f.label :titulo, :class => 'control-label' %>
     <div class="controls">
@@ -29,6 +28,15 @@ LOsdsadasdasd
     </div>
     <%= error_span(@evento[:descricao]) %>
   </div>
+  
+  <div class="control-group">
+    <%= f.label :local, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:evento, :local_id, Local.all.collect, :id, :nome, {:prompt => false })%>
+    </div>
+    <%= error_span(@evento[:local]) %>
+  </div>
+
   <div class="control-group">
     <%= f.label :inicio, :class => 'control-label' %>
     <div class="controls">
@@ -43,6 +51,7 @@ LOsdsadasdasd
     </div>
     <%= error_span(@evento[:termino]) %>
   </div>
+
   <div class="control-group">
     <%= f.label :imagem, :class => 'control-label' %>
     <div class="controls">
