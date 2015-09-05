@@ -22,7 +22,6 @@
 
 //= turbolinks
 //= gmaps
-//= gmaps_ujs
 //= require_tree .
 
 

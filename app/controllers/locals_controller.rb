@@ -5,7 +5,7 @@ class LocalsController < ApplicationController
   # GET /locals.json
   def index
     @locals = Local.all
-    @cidades = Cidade.all
+    @cidades = Cidade.all     
 
     @hash = Gmaps4rails.build_markers(@locals) do |local, marker|
       marker.lat local.latitude
@@ -23,6 +23,7 @@ class LocalsController < ApplicationController
                  content: '<p>HTML Content</p>'
                })
     end
+
   end
 
   # GET /locals/1
@@ -30,12 +31,23 @@ class LocalsController < ApplicationController
   def show
     @local = Local.find(params[:id])
 
-    @hash = Gmaps4rails.build_markers(Local.all) do |local, marker|
-      marker.lat local.latitude
-      marker.lng local.longitude
-
-    @map = GMaps.new(lat: 40.7127837, lng: -74.0059413)
+    #@map = GMaps.new(lat: @local.latitude , lng: @local.longitude )
+    @hash = Gmaps4rails.build_markers(@locals) do |local, marker|
+      marker.lat @local.latitude
+      marker.lng @local.longitude
     end
+
+    @map = GMaps.new(div: '#map', lat: @local.latitude, lng: @local.longitude)
+    @map.addMarker(lat: @local.latitude,
+                   lng: @local.longitude,
+                   title: @local.nome,
+                   click: GMaps::JS["function(e) { alert('You clicked in this marker'); }"])
+    @map.addMarker(lat: @local.latitude,
+                   lng: @local.longitude,
+                   title: 'Marker with InfoWindow',
+                   infoWindow: {
+                     content: '<p>HTML Content</p>'
+                   })
   end
 
   def local_params
