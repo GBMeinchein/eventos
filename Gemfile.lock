@@ -61,8 +61,12 @@ GEM
     execjs (2.5.2)
     filterrific (2.0.5)
       rails (>= 3.1.0)
+    geocoder (1.2.9)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gmaps-rails (0.0.2)
+      rails
+    gmaps4rails (2.1.2)
     i18n (0.7.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
@@ -170,6 +174,9 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   filterrific
+  geocoder
+  gmaps-rails
+  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   less-rails

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815200903) do
+ActiveRecord::Schema.define(version: 20150902004002) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -35,10 +35,12 @@ ActiveRecord::Schema.define(version: 20150815200903) do
     t.datetime "inicio"
     t.datetime "termino"
     t.string   "imagem",     limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "locals_id",  limit: 4
     t.integer  "local_id",   limit: 4
+    t.decimal  "latitude",                 precision: 10
+    t.decimal  "longitude",                precision: 10
   end
 
   add_index "eventos", ["locals_id"], name: "FK_COD_LOCAL", using: :btree
@@ -49,6 +51,9 @@ ActiveRecord::Schema.define(version: 20150815200903) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "evento_id",  limit: 4
+    t.string   "endereco",   limit: 255
+    t.float    "latitude",   limit: 53
+    t.float    "longitude",  limit: 53
   end
 
   add_index "locals", ["cidade_id"], name: "index_locals_on_cidade_id", using: :btree

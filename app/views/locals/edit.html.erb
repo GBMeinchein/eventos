@@ -4,3 +4,20 @@
 
 <%= link_to 'Show', @local %> |
 <%= link_to 'Back', locals_path %>
+
+%h1 Edit local
+
+= form_for @evento do |f|
+  = f.label :nome, 'local name'
+  = f.text_field :nome
+  / map div
+  #map{:style => "width: 550px; height: 350px;"}
+  = f.hidden_field :latitude, id: 'map_lat'
+  = f.hidden_field :longitude, id: 'map_lng'
+  = f.submit 'UPDATE'
+
+:javascript
+  $(document).ready(function(){
+    var local = #{@local.to_json}
+    gmap_form(local);    // form map for edit view (print marker and possibility of put newer)
+  });

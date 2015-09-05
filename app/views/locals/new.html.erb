@@ -20,8 +20,28 @@
 	</div>
 
 	<div class="field">
-		<%= f.label :cidade_id, "Cidades" %>
+		<%= f.label :estado_id, "Estado" %>
+    	<%= select_tag :searchlocal, options_from_collection_for_select(Estado.all.collect, 'id', 'siglaEstado')%>
+	</div>
+
+	<div class="field">
+		<%= f.label :cidade_id, "Cidade" %>
   		<%= collection_select(:local, :cidade_id, Cidade.all.collect, :id, :nome, {:prompt => false })%>
+	</div>
+
+	<div class="field">
+		<%= f.label :latitude %><br>
+		<%= f.text_field :latitude %>
+	</div>
+
+	<div class="field">
+		<%= f.label :longitude %><br>
+		<%= f.text_field :longitude %>
+	</div>
+
+	<div class="field">
+		<%= f.label :endereco %><br>
+		<%= f.text_field :endereco %>
 	</div>
 
 	<div class="actions">
@@ -30,4 +50,3 @@
 <% end %>
 
 <%= link_to 'Back', locals_path %>
-
