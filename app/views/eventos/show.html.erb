@@ -18,6 +18,10 @@
   <dd><%= image_tag(@evento.imagem_url, :width => 60) if @evento.imagem.present? %></dd>
 </dl>
 
+<%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => "_blank" do %>
+  <%= image_tag("facebook.png", :class => "facebook_icon", :alt => "Facebook") %>     
+<% end %> 
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               eventos_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

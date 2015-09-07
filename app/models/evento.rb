@@ -4,8 +4,9 @@ class Evento < ActiveRecord::Base
 	validates_presence_of :titulo, message: "deve ser preenchido"
 	validates_presence_of :inicio, message: "deve ser preenchido"
 
-	def self.search(query, querylocal)
+	def self.search(query, estadoQuery, cidadeQuery, localQuery)
     	#where("titulo like ? and local_id = ?",  "%#{query}%", "#{querylocal}")
-    	where("titulo like ?", "%#{query}%")
+    	joins(local: [cidade: :estado] ).where(estados: {id: estadoQuery})# {cidades: {id :cidadeQuery}})
+    	#where("titulo like ? and local.cidade.estado.id = ?", "%#{query}%", "#{estadoQuery}")
   	end
 end
