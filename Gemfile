@@ -31,6 +31,8 @@ gem 'gmaps4rails'
 gem 'geocoder'
 gem 'gmaps-rails'
 
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

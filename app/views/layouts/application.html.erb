@@ -43,6 +43,10 @@
   </head>
   <body>
 
+    <% if login_signed_in? %>
+    <p>Hello <%= current_login.email  %> - <%=link_to "Sign_out", destroy_login_session_path, :method => 'delete'%>
+      <br>
+    <%end%>
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
@@ -56,7 +60,6 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Eventos", "/eventos"  %></li>
             <li><%= link_to "Locais", "/locals"  %></li>
-            <li><%= link_to "Link3", "/usuarios"  %></li>
           </ul>
         </div>
       </div>
@@ -70,12 +73,12 @@
         </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
+            <h3>Login</h3>
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header"></li>
+            <li><%= link_to "Cadastrar-se", "/logins/sign_up"  %></li>  
+            <li><%= link_to "Entrar", "/logins/sign_in"  %></li>
+            <li align="Right"><%= link_to "Sair", destroy_login_session_path, :method => 'delete'%></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

@@ -1,11 +1,12 @@
 class EventosController < ApplicationController
+
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
 
   # GET /eventos
   # GET /eventos.json
   def index
     if params[:search]
-      @eventos = Evento.search(params[:search], params[:estadoSearch], params[:cidadeSearch], params[:searchlocal]).order("inicio")
+      @eventos = Evento.search(params[:search], params[:estadoSearch], params[:cidadeSearch], params[:searchlocal])#.order("inicio")
     else
       @eventos = Evento.all
     end
