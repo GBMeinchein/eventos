@@ -1,5 +1,5 @@
 class LocalsController < ApplicationController
-  before_action :authenticate_login!  
+  before_action :authenticate_login! , only: [:new, :edit, :update, :destroy]
   before_action :set_local, only: [:show, :edit, :update, :destroy]
 
   # GET /locals

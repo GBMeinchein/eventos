@@ -44,7 +44,7 @@
   <body>
 
     <% if login_signed_in? %>
-    <p>Hello <%= current_login.email  %> - <%=link_to "Sign_out", destroy_login_session_path, :method => 'delete'%>
+    <p>Olá <%= current_login.email  %> - <%=link_to "Sign_out", destroy_login_session_path, :method => 'delete'%>
       <br>
     <%end%>
 

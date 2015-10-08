@@ -33,6 +33,9 @@ gem 'gmaps-rails'
 
 gem 'devise'
 
+#gem 'activeadmin', github: 'activeadmin'
+#gem "meta_search", :git => "git://github.com/ernie/meta_search.git"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

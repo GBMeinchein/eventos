@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #get 'home/index'
-  root 'home#index'
+  #root 'home#index'
 
   devise_for :logins, controllers: { registrations: "registrations"}
   resources :locals
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :usuarios
   resources :eventos
 
-  #root :to => redirect('/eventos')
+  root :to => redirect('/eventos')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -9,7 +9,8 @@
   <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
   <dd><%= @evento.descricao %></dd>
   <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
-  <dd><%= @evento.local.nome %></dd>  
+  <dd><li><%= link_to t('.show', :default => t(@evento.local.nome)),
+              local_path(@evento.local) %></li></dd>
   <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
   <dd><%= @evento.inicio %></dd>
   <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>
