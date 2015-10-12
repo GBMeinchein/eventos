@@ -17,6 +17,8 @@
   <dd><%= @evento.termino %></dd>
   <dt><strong><%= model_class.human_attribute_name(:imagem) %>:</strong></dt>
   <dd><%= image_tag(@evento.imagem_url, :width => 60) if @evento.imagem.present? %></dd>
+  <dt><strong><%='Criado por:'%></strong></dt>  
+  <dd><%= @evento.login.nome if @evento.login.present? %></dd>
 </dl>
 
 <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => "_blank" do %>

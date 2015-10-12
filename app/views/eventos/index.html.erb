@@ -14,10 +14,9 @@
               <%= form_tag(eventos_path, :method => "get", class: "navbar-form", id: "search-form") do %>
                 <div class="input-append">
                   <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Buscar eventos" %>
-                  <%= select_tag :estadoSearch, options_from_collection_for_select(Estado.all.collect, 'id', 'nome'), include_blank: true%>   
-                  <%= select_tag :cidadeSearch, options_from_collection_for_select(Cidade.all.collect, 'id', 'nome'), include_blank: true%>                                  
-                  <%= select_tag :searchlocal, options_from_collection_for_select(Local.all.collect, 'id', 'nome'), include_blank: true%>
-
+                  <%= select_tag :estadoSearch, options_from_collection_for_select(Estado.all.collect, 'id', 'nome'), {:include_blank => '- Estado -'}%>   
+                  <%= select_tag :cidadeSearch, options_from_collection_for_select(Cidade.all.collect, 'id', 'nome'), {:include_blank => '- Cidade -'}%>                                 
+                  <%= select_tag :searchlocal, options_from_collection_for_select(Local.all.collect, 'id', 'nome'), {:include_blank => '- Local -'}%>
                   <button type="submit" class="btn btn-default">Buscar</button>
                 </div>
               <% end %>
@@ -32,7 +31,7 @@
       <tr>
         <td><%= image_tag(evento.imagem_url, :width => 100, :hight => 200) if evento.imagem.present? %></td>
         <td>  
-
+          
           <dt><strong><%= model_class.human_attribute_name(:titulo) %>:</strong></dt>
           <dd><%= evento.titulo %></dd>
           <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>

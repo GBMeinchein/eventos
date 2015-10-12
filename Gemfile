@@ -33,6 +33,9 @@ gem 'gmaps-rails'
 
 gem 'devise'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 #gem 'activeadmin', github: 'activeadmin'
 #gem "meta_search", :git => "git://github.com/ernie/meta_search.git"
 

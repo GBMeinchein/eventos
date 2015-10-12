@@ -27,6 +27,7 @@ class EventosController < ApplicationController
   # GET /eventos/new
   def new
     @evento = Evento.new
+    @evento.login_id = current_login.id
   end
 
   # GET /eventos/1/edit
@@ -37,6 +38,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(evento_params)
+    @evento.login_id = current_login.id
 
     respond_to do |format|
       if @evento.save

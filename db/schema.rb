@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912181210) do
+ActiveRecord::Schema.define(version: 20151012210020) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150912181210) do
     t.integer  "local_id",   limit: 4
     t.decimal  "latitude",                 precision: 10
     t.decimal  "longitude",                precision: 10
+    t.integer  "login_id",   limit: 4
   end
 
   add_index "eventos", ["locals_id"], name: "FK_COD_LOCAL", using: :btree
@@ -71,6 +72,10 @@ ActiveRecord::Schema.define(version: 20150912181210) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "nome",                   limit: 255
+    t.string   "access_token",           limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "provider",               limit: 255
   end
 
   add_index "logins", ["email"], name: "index_logins_on_email", unique: true, using: :btree
