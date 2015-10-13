@@ -1,5 +1,5 @@
 class EventosController < ApplicationController
-  #before_action :authenticate_login! , only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_login! , only: [:new, :edit, :update, :destroy]
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
 
   # GET /eventos
@@ -32,6 +32,12 @@ class EventosController < ApplicationController
 
   # GET /eventos/1/edit
   def edit
+    if @evento.login_id != current_login.id 
+        respond_to do |format|
+        format.html { redirect_to eventos_url, alert: 'Atenção! Você não tem permissão para essa tarefa.' }
+        format.json { head :no_content }
+        end
+    end
   end
 
   # POST /eventos
@@ -68,21 +74,32 @@ class EventosController < ApplicationController
   # DELETE /eventos/1
   # DELETE /eventos/1.json
   def destroy
-    @evento.destroy
-    respond_to do |format|
-      format.html { redirect_to eventos_url, notice: 'Evento was successfully destroyed.' }
-      format.json { head :no_content }
+    if @evento.login_id == current_login.id 
+      @evento.destroy
+      respond_to do |format|
+        format.html { redirect_to eventos_url, notice: 'Evento was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+        respond_to do |format|
+        format.html { redirect_to eventos_url, alert: 'Atenção! Você não tem permissão para essa tarefa.' }
+        format.json { head :no_content }
+        end
     end
+
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evento
+      #byebug
       @evento = Evento.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
+      #byebug
       params.require(:evento).permit(:titulo, :descricao, :inicio, :termino, :imagem, :local_id)
     end
 end
