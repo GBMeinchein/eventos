@@ -1,7 +1,8 @@
 class Login < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-
+  has_many :confirmado
+  has_many :evento, through: :confirmados
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

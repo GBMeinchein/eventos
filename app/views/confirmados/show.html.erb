@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @confirmado.evento_id %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @confirmado.login_id %>
+</p>
+
+<%= link_to 'Edit', edit_confirmado_path(@confirmado) %> |
+<%= link_to 'Back', confirmados_path %>
