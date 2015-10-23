@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016215829) do
+ActiveRecord::Schema.define(version: 20151020210529) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -37,18 +37,19 @@ ActiveRecord::Schema.define(version: 20151016215829) do
   end
 
   create_table "eventos", force: :cascade do |t|
-    t.string   "titulo",     limit: 255
-    t.text     "descricao",  limit: 65535
+    t.string   "titulo",            limit: 255
+    t.text     "descricao",         limit: 65535
     t.datetime "inicio"
     t.datetime "termino"
-    t.string   "imagem",     limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.integer  "locals_id",  limit: 4
-    t.integer  "local_id",   limit: 4
-    t.decimal  "latitude",                 precision: 10
-    t.decimal  "longitude",                precision: 10
-    t.integer  "login_id",   limit: 4
+    t.string   "imagem",            limit: 255
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "locals_id",         limit: 4
+    t.integer  "local_id",          limit: 4
+    t.decimal  "latitude",                        precision: 10
+    t.decimal  "longitude",                       precision: 10
+    t.integer  "login_id",          limit: 4
+    t.integer  "numeroConfirmados", limit: 4
   end
 
   add_index "eventos", ["locals_id"], name: "FK_COD_LOCAL", using: :btree

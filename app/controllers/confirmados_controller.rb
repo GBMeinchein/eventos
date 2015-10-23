@@ -1,10 +1,15 @@
 class ConfirmadosController < ApplicationController
+  before_action :authenticate_login!
   before_action :set_confirmado, only: [:show, :edit, :update, :destroy]
 
   # GET /confirmados
   # GET /confirmados.json
   def index
     @confirmados = Confirmado.all
+  end
+
+  def SomaConfirmados
+    @numeroConfirmados = Confirmado.SomaConfirmados(params[:evento]).count
   end
 
   # GET /confirmados/1
@@ -25,19 +30,37 @@ class ConfirmadosController < ApplicationController
   # POST /confirmados
   # POST /confirmados.json
   def create
-    @confirmado = Confirmado.new
-    @confirmado.login_id = current_login.id
-    @confirmado.evento_id = params[:evento_id]
-
-    respond_to do |format|
-      if @confirmado.save
-        format.html { redirect_to @confirmado, notice: 'Confirmado was successfully created.' }
-        format.json { render :show, status: :created, location: @confirmado }
+      confirmados = Confirmado.search(params[:evento_id], current_login.id)
+        
+      if confirmados.present?
+        respond_to do |format|
+            format.html { redirect_to eventos_url, alert: 'Obrigado, você já confirmou a presença no evento!' }
+            format.json { render :show, status: :created, location: @confirmado }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @confirmado.errors, status: :unprocessable_entity }
+        @confirmado = Confirmado.new
+        @confirmado.login_id = current_login.id
+        @confirmado.evento_id = params[:evento_id]
+
+        @evento = @confirmado.evento
+        @evento.numeroConfirmados = params[:numeroConfirmados]
+        if @evento.numeroConfirmados == nil
+          @evento.numeroConfirmados = 1
+        else
+          @evento.numeroConfirmados = @evento.numeroConfirmados + 1
+        end
+        @evento.save
+
+        respond_to do |format|
+          if @confirmado.save
+            format.html { redirect_to eventos_url, notice: 'Isso aí! Te esperamos lá!' }
+            format.json { render :show, status: :created, location: @confirmado }
+          else
+            format.html { render :new }
+            format.json { render json: @confirmado.errors, status: :unprocessable_entity }
+          end
+        end
       end
-    end
   end
 
   # PATCH/PUT /confirmados/1

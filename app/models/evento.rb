@@ -2,7 +2,7 @@ class Evento < ActiveRecord::Base
 	belongs_to :local
 	belongs_to :login
 	has_many :confirmado
-	has_many :login, through: :confirmado, source: :login
+	#has_many :login, through: :confirmado, source: :login
 	mount_uploader :imagem, PictureUploader
 	validates_presence_of :titulo, message: "deve ser preenchido"
 	validates_presence_of :inicio, message: "deve ser preenchido"

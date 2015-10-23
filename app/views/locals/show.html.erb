@@ -1,43 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @local.nome %>
-</p>
+<div class="page-header">
+  <h1><%=@local.nome%></h1>
+</div>
 
-<p>
-  <strong>Cidade:</strong>
-  <%= @local.cidade.nome%>
-</p>
+<div class="jumbotron">
 
-<p>
-  <strong>Endereco:</strong>
-  <%= @local.endereco%>
-</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Endereço</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @local.latitude%>
-</p>
+    <tbody>
+      <tr>
+        <td><%= @local.endereco %>
+        <%= ", " + @local.cidade.nome if @local.cidade.present? %>
+        <%= ", " + @local.cidade.estado.siglaEstado if @local.cidade.present? %></td>
+      </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @local.longitude%>
-</p>
+  <br>
+  
+  <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCIwqtOC58w8tcq4S5lgqnt82sUVUKV7XY&sensor=true' %>
 
-<%= link_to 'Edit', edit_local_path(@local) %> |
-<%= link_to 'Back', locals_path %>
+  <script>
+    jQuery(function() {
+      <%= @map.to_js %>
+    })
+  </script>
+  <body>
+    <div sytle='width: 800px'>
+      <div id='map' style='width: 800px; height: 400px'></div>
+    </div>
+  </body>
 
-<%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCIwqtOC58w8tcq4S5lgqnt82sUVUKV7XY&sensor=true' %>
 
-<script>
-  jQuery(function() {
-    <%= @map.to_js %>
-  })
-</script>
-<body>
-  <div sytle='width: 800px'>
-    <div id='map' style='width: 800px; height: 400px'></div>
-  </div>
-</body>
+  <%= link_to 'Edit', edit_local_path(@local) %> |
+  <%= link_to 'Back', locals_path %>
 
+</div>

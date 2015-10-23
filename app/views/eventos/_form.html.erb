@@ -1,3 +1,5 @@
+<div class="jumbotron">
+
 <%= form_for @evento, :html => { :class => "form-horizontal evento" } do |f| %>
 
     <% if @evento.errors.any? %>
@@ -35,6 +37,8 @@
       <%= collection_select(:evento, :local_id, Local.all.collect, :id, :nome, {:prompt => false })%>
     </div>
     <%= error_span(@evento[:local]) %>
+    <%= link_to t('Cadastre o local', :default => t("Cadastre o local agora")),
+                new_local_path %>    
   </div>
 
   <div class="control-group">
@@ -66,3 +70,4 @@
             eventos_path, :class => 'btn btn-default' %>
 
 <% end %>
+</div>

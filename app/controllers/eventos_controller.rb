@@ -28,6 +28,7 @@ class EventosController < ApplicationController
   def new
     @evento = Evento.new
     @evento.login_id = current_login.id
+    @evento.numeroConfirmados = 0;
   end
 
   # GET /eventos/1/edit

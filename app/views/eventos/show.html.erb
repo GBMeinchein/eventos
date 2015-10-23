@@ -4,21 +4,40 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:titulo) %>:</strong></dt>
-  <dd><%= @evento.titulo %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
-  <dd><%= @evento.descricao %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
-  <dd><li><%= link_to t('.show', :default => t(@evento.local.nome)),
-              local_path(@evento.local) %></li></dd>
-  <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
-  <dd><%= @evento.inicio %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>
-  <dd><%= @evento.termino %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:imagem) %>:</strong></dt>
-  <dd><%= image_tag(@evento.imagem_url, :width => 60) if @evento.imagem.present? %></dd>
-  <dt><strong><%='Criado por:'%></strong></dt>  
-  <dd><%= @evento.login.nome if @evento.login.present? %></dd>
+  <table class="table table-striped">
+    <tbody>
+
+  <td>
+    <dt><strong><%= model_class.human_attribute_name(:titulo) %>:</strong></dt>
+    <dd><%= @evento.titulo %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:descricao) %>:</strong></dt>
+    <dd><%= @evento.descricao %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
+    <dd><li><%= link_to t('.show', :default => t(@evento.local.nome)),
+                local_path(@evento.local) %></li></dd>
+    <dt><strong><%= model_class.human_attribute_name(:inicio) %>:</strong></dt>
+    <dd><%= @evento.inicio %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:termino) %>:</strong></dt>
+    <dd><%= @evento.termino %></dd>
+    <dt><strong><%='Criado por:'%></strong></dt>  
+    <dd><%= @evento.login.nome  %></dd>
+  </td>
+
+  <td>
+    <dd>
+      <div class="row">
+        <div class="col-xs-3 col-md-6">
+          <a href="#" class="thumbnail">
+            <img src=<%=@evento.imagem_url%> alt=""%>
+          </a>
+        </div>
+      </div>
+    </dd>
+  </td>
+
+
+</body>
+</table>
 </dl>
 
 <%= link_to "https://www.facebook.com/sharer/sharer.php?u=" + request.original_url, :target => "_blank" do %>

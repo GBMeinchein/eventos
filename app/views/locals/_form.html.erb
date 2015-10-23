@@ -1,4 +1,6 @@
-<%= form_for(@local), :html => { :class => "form-horizontal evento" } do |f| %>
+<div class="jumbotron">
+
+<%= form_for(@local) do |f| %>
   <% if @local.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@local.errors.count, "error") %> prohibited this local from being saved:</h2>
@@ -11,7 +13,7 @@
     </div>
   <% end %>
 
-  <div class="control-group">
+  <div class="field">
     <%= f.label :nome %><br>
     <%= f.text_field :nome %>
   </div>
@@ -20,3 +22,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>
