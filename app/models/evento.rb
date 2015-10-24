@@ -47,6 +47,7 @@ class Evento < ActiveRecord::Base
 		.where("#{'cidades.estado_id = ' + estadoQuery if estadoQuery.present?}")
 		.where("#{('eventos.local_id = ' + localQuery if localQuery.present?)}")
 		.where("#{'eventos.titulo like ' + "'%" + tituloQuery + "%'" if tituloQuery.present?}")
+		.order("numeroConfirmados DESC")
 
 
 		#where("#{('eventos.local_id = ' + localQuery if localQuery.present? + 'and ventos.titulo = ' + "'" + tituloQuery + "'")}")
