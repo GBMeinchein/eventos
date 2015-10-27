@@ -36,6 +36,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'shareable'
+
 #gem 'activeadmin', github: 'activeadmin'
 #gem "meta_search", :git => "git://github.com/ernie/meta_search.git"
 

@@ -52,7 +52,7 @@
     <%=request.location.city%>
 
     <% if login_signed_in? %>
-    <p>Olá <%= current_login.nome  %> - <%=link_to "Sign_out", destroy_login_session_path, :method => 'delete'%>
+    <h7><p>Olá <%= current_login.nome  %> - <%=link_to "Sign_out", destroy_login_session_path, :method => 'delete'%></h7>
       <br>
     <%end%>
 

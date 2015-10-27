@@ -31,10 +31,13 @@
                   <div class="actions">
                     <%= f.submit "Log in" %>
                   </div>
-                  
-                  <div class="actions">
-                    <%= link_to "Login com Facebook", "/auth/facebook" %> 
-                  </div>
+                
+
+                  <%= link_to "/auth/facebook", :target => "_blank", :style=>"color:#fff;", class: "btn btn-facebook"  do %>
+                  <i class="fa fa-facebook"></i>
+                    | Login com Facebook
+                  <% end %> 
+
                 <% end %>
               </div>
 <!--

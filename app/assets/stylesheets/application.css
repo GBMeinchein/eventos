@@ -21,6 +21,7 @@
 /* header */
 
 #logo {
+
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
@@ -132,4 +133,8 @@
 {
     display: block;
     margin-top: 10px;
+}
+
+.button.facebook {
+ background: #3b5998;
 }
