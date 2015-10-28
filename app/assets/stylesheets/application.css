@@ -138,3 +138,35 @@
 .button.facebook {
  background: #3b5998;
 }
+
+.navbar-custom {
+    color: #333333;
+    background-color: #000000;
+}
+
+.navbar-brand-custom{
+    font-family: proxima-nova;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.navbar-nav .navbar-brand > li > a:hover, .navbar-brand .navbar-default .navbar-nav > li > a:focus, .navbar-nav > li > a{
+    font-family: proxima-nova;
+    font-style: normal;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666666;
+} 
+
+.navbar .brand, .navbar .nav > li > a {
+    color: #FFFFF0;
+    background-color: #000000;    
+}
+.navbar .brand, .navbar .nav > li > a:hover {
+    color: #FFFFF0;
+    background-color: #000000;    
+}

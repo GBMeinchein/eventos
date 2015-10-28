@@ -22,6 +22,8 @@
             <li class="list-group-item"><%= select_tag :estadoSearch, options_from_collection_for_select(Estado.all.collect, 'id', 'nome'), {:include_blank => '- Estado -', :style => "width: 200px;"}%></li>
             <li class="list-group-item"><%= select_tag :cidadeSearch, options_from_collection_for_select(Cidade.all.collect, 'id', 'nome'), {:include_blank => '- Cidade -', :style => "width: 200px;"}%></li>
             <li href="#" class="list-group-item"><%= select_tag :searchlocal, options_from_collection_for_select(Local.all.collect, 'id', 'nome'), {:include_blank => '- Local -', :style => "width: 200px;"}%></li>
+            <li href="#" class="list-group-item"><strong>De: </strong><%= select_date(Time.now,order: [:day, :month, :year], :prefix => :deSearch)%></li>            
+            <li href="#" class="list-group-item"><strong>Até:</strong><%= select_date(Time.now + 6.days, order: [:day, :month, :year], :prefix => :ateSearch)%></li>            
             <li class="list-group-item"><button type="submit" class="btn btn-default">Buscar</button></>          
           </div>
           <% end %>
@@ -62,8 +64,8 @@
                 <dd><%= evento.local.cidade.nome + " - " + evento.local.cidade.estado.siglaEstado if evento.local.present? %></dd>                  
                 <dt><strong><%= model_class.human_attribute_name(:inicio)%>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                 <strong><%= model_class.human_attribute_name(:termino) %>:</strong><dt>
-                <dd><%= evento.inicio.strftime("%m/%d/%Y") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= evento.termino.strftime("%m/%d/%Y") %></dd>
+                <dd><%= evento.inicio.strftime("%d/%m/%Y") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= evento.termino.strftime("%d/%m/%Y") %></dd>
               </div>
                 
 

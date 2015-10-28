@@ -7,46 +7,21 @@ class Evento < ActiveRecord::Base
 	validates_presence_of :titulo, message: "deve ser preenchido"
 	validates_presence_of :inicio, message: "deve ser preenchido"
 
-	def self.search(tituloQuery, estadoQuery, cidadeQuery, localQuery)
+	def self.search(tituloQuery, estadoQuery, cidadeQuery, localQuery, deQuery, ateQuery)
     	#where("titulo like ? +  and local_id = ?",  "%#{query}%", "#{querylocal}")
     	#where("#{'local_id = ' + (localQuery if localQuery.present?) + 'and titulo like ' + (tituloQuery if tituloQuery.present?)}")
     	#where("#{'titulo = ' + tituloQuery if tituloQuery.present?}")
-    	#if(query == "" && estadoQuery == "" && cidadeQuery == "" && localQuery == "")
-		#	Evento.all
-		#else
-		#byebug
-		#query = ""
-		#if tituloQuery.present?
-		#	query = "eventos.titulo = #{tituloQuery}"
-		#end
 
-		#if estadoQuery.present?
-		#	if query.empty?
-		#	query += " and "
-		#	end
-		#	query += "estados.id = #{estadoQuery}"
-		#end
+    	dataDe = deQuery['year'] + "-" + deQuery['month'] + "-" + deQuery['day'] if deQuery.present?
+    	dataAte = ateQuery['year'] + "-" + ateQuery['month'] + "-" + ateQuery['day'] if ateQuery.present?
 
-		#if cidadeQuery.present?
-		#	if query.empty?
-		#		query += " and "
-		#	end
-		#	query += "cidades.id = #{cidadeQuery}"
-		#end
-
-		#if localQuery.present?
-		#	if query.empty?
-		#		query += " and "
-		#	end
-		#	query += "locals.id = #{localQuery}"
-		# => end
-
-		#joins(local: [cidade: :estado]).where(titulo: tituloQuery.present?, estados: {id: estadoQuery.present?}, cidades: {id: cidadeQuery.present?}, locals: {id: localQuery.present?})    		
 		joins("#{'inner join locals on locals.id = eventos.local_id inner join cidades on locals.cidade_id = cidades.id' if cidadeQuery.present? || estadoQuery.present?}")
 		.where("#{'cidades.id = ' + cidadeQuery if cidadeQuery.present?}")
 		.where("#{'cidades.estado_id = ' + estadoQuery if estadoQuery.present?}")
 		.where("#{('eventos.local_id = ' + localQuery if localQuery.present?)}")
 		.where("#{'eventos.titulo like ' + "'%" + tituloQuery + "%'" if tituloQuery.present?}")
+		.where("#{'eventos.inicio >= ' + "'" + dataDe + "'" if deQuery.present?}")					
+		.where("#{'eventos.inicio <= ' + "'" + dataAte + "'" if ateQuery.present?}")	
 		.order("numeroConfirmados DESC")
 
 

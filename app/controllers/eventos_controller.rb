@@ -5,11 +5,11 @@ class EventosController < ApplicationController
   # GET /eventos
   # GET /eventos.json
   def index
-    if params[:search]
-      @eventos = Evento.search(params[:search], params[:estadoSearch], params[:cidadeSearch], params[:searchlocal])
-    else
-      @eventos = Evento.all.order("numeroConfirmados DESC")
-    end
+    #if params[:search]
+      @eventos = Evento.search(params[:search], params[:estadoSearch], params[:cidadeSearch], params[:searchlocal], params[:deSearch], params[:ateSearch])
+    #else
+    #  @eventos = Evento.all.order("numeroConfirmados DESC")
+    #end
 
     #@eventos = Evento.search(params[:search])
     #  @eventos = @eventos.titulo(params[:titulo]) if params[:titulo].present?

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #root 'home#index'
 
 
-  devise_for :logins, controllers: { registrations: "registrations"}
+  #devise_for :logins, controllers: { registrations: "registrations"}
   resources :locals
   resources :cidades
   resources :estados
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :eventos
 
   root :to => redirect('/eventos')
+
+  devise_for :logins, :controllers => { :omniauth_callbacks => "logins/omniauth_callbacks" }
 
   #get "/auth/:provider/callback" => "registrations#create", as: :auth_callback
   #get "/auth/failure" => "registrations#failure", as: :auth_failure
