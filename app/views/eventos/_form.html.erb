@@ -44,14 +44,14 @@
   <div class="control-group">
     <%= f.label :inicio, :class => 'control-label' %>
     <div class="controls">
-      <%= f.datetime_select :inicio, :class => 'form-control' %>
+      <%= f.datetime_select :inicio, :class => 'form-control', order: [:day, :month, :year] %>
     </div>
     <%= error_span(@evento[:inicio]) %>
   </div>
   <div class="control-group">
     <%= f.label :termino, :class => 'control-label' %>
     <div class="controls">
-      <%= f.datetime_select :termino, :class => 'form-control' %>
+      <%= f.datetime_select :termino, :class => 'form-control', order: [:day, :month, :year] %>
     </div>
     <%= error_span(@evento[:termino]) %>
   </div>

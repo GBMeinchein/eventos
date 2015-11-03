@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :confirmados
   #get 'home/index'
-  #root 'home#index'
+  root 'eventos#index'
 
 
   #devise_for :logins, controllers: { registrations: "registrations"}
@@ -11,9 +11,20 @@ Rails.application.routes.draw do
   resources :usuarios
   resources :eventos
 
-  root :to => redirect('/eventos')
+  #root :to => redirect('/eventos?')
 
-  devise_for :logins, :controllers => { :omniauth_callbacks => "logins/omniauth_callbacks" }
+  devise_for :logins, :controllers => { :omniauth_callbacks => "logins/omniauth_callbacks", 
+    registrations: 'registrations', sessions: 'sessions'}   
+
+
+  #devise_for :logins, 
+  #                   controllers: {:omniauth_callbacks => 'login/omniauth_callbacks',
+  #                           registrations: 'registrations',
+  #                           sessions: 'sessions'}
+
+    #devise_for :logins, path_names: {sign_in: 'login', sign_out: 'logout'},
+    #                 controllers: {:omniauth_callbacks => 'logins/omniauth_callbacks',
+    #                         registrations: 'registrations'}
 
   #get "/auth/:provider/callback" => "registrations#create", as: :auth_callback
   #get "/auth/failure" => "registrations#failure", as: :auth_failure

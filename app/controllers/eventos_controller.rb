@@ -78,12 +78,12 @@ class EventosController < ApplicationController
     if @evento.login_id == current_login.id 
       @evento.destroy
       respond_to do |format|
-        format.html { redirect_to eventos_url, notice: 'Evento was successfully destroyed.' }
+        format.html { redirect_to eventos_path, notice: 'Evento deletado com sucesso!' }
         format.json { head :no_content }
       end
     else
         respond_to do |format|
-        format.html { redirect_to eventos_url, alert: 'Atenção! Você não tem permissão para essa tarefa.' }
+        format.html { redirect_to eventos_path, alert: 'Atenção! Você não tem permissão para essa tarefa.' }
         format.json { head :no_content }
         end
     end

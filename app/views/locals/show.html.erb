@@ -16,9 +16,9 @@
 
     <tbody>
       <tr>
-        <td><%= @local.endereco %>
-        <%= ", " + @local.cidade.nome if @local.cidade.present? %>
-        <%= ", " + @local.cidade.estado.siglaEstado if @local.cidade.present? %></td>
+        <td>
+        <%= @local.address %>                     
+        </td>
       </tr>
     </tbody>
   </table>

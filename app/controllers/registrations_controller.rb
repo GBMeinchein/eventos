@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+ class RegistrationsController < Devise::RegistrationsController
 
 	#private
 
@@ -8,6 +8,25 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def account_update_params
 		params.require(:login).permit(:nome, :email, :password, :password_confirmation, :current_password)
+	end
+
+	def after_sign_up_path_for(resource)
+		if resource_name == :login
+  			login_path(@login)
+  		end
+    end	
+
+	def create
+	    @login = Login.new(login_params)
+
+	    respond_to do |format|
+	      if @login.save
+	        format.html { redirect_to(action: "show", id: @user, notice: 'User was successfully created.') }
+	      else
+	        format.html { render :new }
+	      end
+	      redirect_to(action: "show", id: @login)
+	    end
 	end
 
 #   def create

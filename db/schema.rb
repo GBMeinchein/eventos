@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020210529) do
+ActiveRecord::Schema.define(version: 20151030021142) do
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20151020210529) do
     t.string   "access_token",           limit: 255
     t.string   "uid",                    limit: 255
     t.string   "provider",               limit: 255
+    t.string   "oauth_token",            limit: 255
+    t.string   "token_secret",           limit: 255
   end
 
   add_index "logins", ["email"], name: "index_logins_on_email", unique: true, using: :btree

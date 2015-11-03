@@ -30,9 +30,8 @@
           <%= yield %>
         </div>
 
-
-
   <div class="col-lg-9">          
+    <%= bootstrap_flash %>
       <div class="panel panel-default">
 
       <table class="table table-hover">
@@ -59,7 +58,7 @@
                 </dt>
                 <dt><strong><%= model_class.human_attribute_name(:local) %>:</strong></dt>
                 <dd><%= link_to t('.show', :default => t(evento.local.nome)),
-                local_path(evento.local) %></dd>         
+                local_path(evento.local) if evento.local.present?%></dd>         
                 <dt><strong>Cidade:</strong></dt>
                 <dd><%= evento.local.cidade.nome + " - " + evento.local.cidade.estado.siglaEstado if evento.local.present? %></dd>                  
                 <dt><strong><%= model_class.human_attribute_name(:inicio)%>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
