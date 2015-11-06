@@ -1,33 +1,64 @@
  class RegistrationsController < Devise::RegistrationsController
 
-	#private
+ #before_action :set_login, only: [:show, :edit, :update, :destroy]
+  #layout "devise_company_application"
 
-	def sign_up_params
-		params.require(:login).permit(:nome, :email, :password, :password_confirmation)
-	end
+  def index
+    @logins = Login.all
+  end
 
-	def account_update_params
-		params.require(:login).permit(:nome, :email, :password, :password_confirmation, :current_password)
-	end
+  def show
+    @requests = LoginRequests.where("login_id = ?", current_login.id)
+    
+  end
 
-	def after_sign_up_path_for(resource)
-		if resource_name == :login
-  			login_path(@login)
-  		end
-    end	
+  def new
+    @logins = Login.new
+  end
 
-	def create
-	    @login = Login.new(login_params)
+  def edit
+  end
 
-	    respond_to do |format|
-	      if @login.save
-	        format.html { redirect_to(action: "show", id: @user, notice: 'User was successfully created.') }
-	      else
-	        format.html { render :new }
-	      end
-	      redirect_to(action: "show", id: @login)
-	    end
-	end
+  def create
+    @login = Login.new(login_params)
+
+    respond_to do |format|
+      if @login.save
+        format.html { redirect_to(action: "show", id: @login, notice: 'User was successfully created.') }
+      else
+        format.html { render :new }
+      end
+      redirect_to(action: "show", id: @login)
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @login.update(login_params)
+        format.html { redirect_to @login, notice: 'User was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+      redirect_to action: show
+    end
+  end
+
+  def destroy
+    @login.destroy
+    respond_to do |format|
+      format.html { redirect_to logins_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    def set_login
+      @login = Login.find(params[:id])
+    end
+
+    def login_params
+      params.require(:login).permit(:name, :email, :password, :access_token, :uid, :photo_url, :provider)
+    end
 
 #   def create
 #     auth = request.env["omniauth.auth"]

@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
+  
+  devise_for :logins, 
+                     controllers: {omniauth_callbacks: 'logins/omniauth_callbacks',
+                             registrations: 'registrations',
+                             sessions: 'sessions'}
+
+  devise_scope :login do
+    get 'logins/logout' => 'devise/sessions#destroy'
+  end
+
+
   resources :confirmados
   #get 'home/index'
   root 'eventos#index'
+
+  post 'login_request', controller: 'login_requests', action: 'create'
+
+  get 'show_requests', controller: 'login_requests', action: 'show_requests'  
 
 
   #devise_for :logins, controllers: { registrations: "registrations"}
@@ -13,8 +28,9 @@ Rails.application.routes.draw do
 
   #root :to => redirect('/eventos?')
 
-  devise_for :logins, :controllers => { :omniauth_callbacks => "logins/omniauth_callbacks", 
-    registrations: 'registrations', sessions: 'sessions'}   
+  #devise_for :logins, :controllers => { :omniauth_callbacks => "logins/omniauth_callbacks", 
+  #  registrations: 'registrations', sessions: 'sessions'}   
+
 
 
   #devise_for :logins, 
